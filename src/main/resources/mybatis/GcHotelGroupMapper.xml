@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.GcHotelGroupMapper" >
+  <resultMap id="BaseResultMap" type="entity.GcHotelGroup" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hotel_group_id" property="hotelGroupId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="sta" property="sta" jdbcType="CHAR" />
+    <result column="audit" property="audit" jdbcType="CHAR" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
+    <result column="descript_en" property="descriptEn" jdbcType="VARCHAR" />
+    <result column="descript_short" property="descriptShort" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address1" property="address1" jdbcType="VARCHAR" />
+    <result column="address2" property="address2" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="phone_rsv" property="phoneRsv" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="dns" property="dns" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="html_info" property="htmlInfo" jdbcType="VARCHAR" />
+    <result column="list_order" property="listOrder" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
+    <result column="is_single" property="isSingle" jdbcType="VARCHAR" />
+    <result column="app_type" property="appType" jdbcType="VARCHAR" />
+    <result column="wechat_name" property="wechatName" jdbcType="VARCHAR" />
+    <result column="pms_brand" property="pmsBrand" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="star_level" property="starLevel" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="version_time" property="versionTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="entity.GcHotelGroupWithBLOBs" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="logo" property="logo" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, hotel_group_id, code, sta, audit, descript, descript_en, descript_short, country, 
+    city, address1, address2, phone, fax, phone_rsv, website, email, dns, photo, html_info, 
+    list_order, create_user, create_datetime, modify_user, modify_datetime, is_single, 
+    app_type, wechat_name, pms_brand, province_code, city_code, star_level, version, 
+    version_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark, logo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="entity.GcHotelGroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gc_hotel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.GcHotelGroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gc_hotel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gc_hotel_group
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gc_hotel_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.GcHotelGroupExample" >
+    delete from gc_hotel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.GcHotelGroupWithBLOBs" >
+    insert into gc_hotel_group (id, hotel_group_id, code, 
+      sta, audit, descript, descript_en, 
+      descript_short, country, city, 
+      address1, address2, phone, 
+      fax, phone_rsv, website, 
+      email, dns, photo, 
+      html_info, list_order, create_user, 
+      create_datetime, modify_user, modify_datetime, 
+      is_single, app_type, wechat_name, 
+      pms_brand, province_code, city_code, 
+      star_level, version, version_time, 
+      remark, logo)
+    values (#{id,jdbcType=BIGINT}, #{hotelGroupId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{sta,jdbcType=CHAR}, #{audit,jdbcType=CHAR}, #{descript,jdbcType=VARCHAR}, #{descriptEn,jdbcType=VARCHAR}, 
+      #{descriptShort,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{address1,jdbcType=VARCHAR}, #{address2,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{phoneRsv,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{dns,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{htmlInfo,jdbcType=VARCHAR}, #{listOrder,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{modifyDatetime,jdbcType=TIMESTAMP}, 
+      #{isSingle,jdbcType=VARCHAR}, #{appType,jdbcType=VARCHAR}, #{wechatName,jdbcType=VARCHAR}, 
+      #{pmsBrand,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{starLevel,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{versionTime,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{logo,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.GcHotelGroupWithBLOBs" >
+    insert into gc_hotel_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hotelGroupId != null" >
+        hotel_group_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="sta != null" >
+        sta,
+      </if>
+      <if test="audit != null" >
+        audit,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+      <if test="descriptEn != null" >
+        descript_en,
+      </if>
+      <if test="descriptShort != null" >
+        descript_short,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address1 != null" >
+        address1,
+      </if>
+      <if test="address2 != null" >
+        address2,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="phoneRsv != null" >
+        phone_rsv,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="dns != null" >
+        dns,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="htmlInfo != null" >
+        html_info,
+      </if>
+      <if test="listOrder != null" >
+        list_order,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime,
+      </if>
+      <if test="modifyUser != null" >
+        modify_user,
+      </if>
+      <if test="modifyDatetime != null" >
+        modify_datetime,
+      </if>
+      <if test="isSingle != null" >
+        is_single,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="wechatName != null" >
+        wechat_name,
+      </if>
+      <if test="pmsBrand != null" >
+        pms_brand,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="starLevel != null" >
+        star_level,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="versionTime != null" >
+        version_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hotelGroupId != null" >
+        #{hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        #{sta,jdbcType=CHAR},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=CHAR},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptEn != null" >
+        #{descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptShort != null" >
+        #{descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address1 != null" >
+        #{address1,jdbcType=VARCHAR},
+      </if>
+      <if test="address2 != null" >
+        #{address2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneRsv != null" >
+        #{phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dns != null" >
+        #{dns,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlInfo != null" >
+        #{htmlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null" >
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDatetime != null" >
+        #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSingle != null" >
+        #{isSingle,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="pmsBrand != null" >
+        #{pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null" >
+        #{starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="versionTime != null" >
+        #{versionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.GcHotelGroupExample" resultType="java.lang.Integer" >
+    select count(*) from gc_hotel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gc_hotel_group
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.hotelGroupId != null" >
+        hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sta != null" >
+        sta = #{record.sta,jdbcType=CHAR},
+      </if>
+      <if test="record.audit != null" >
+        audit = #{record.audit,jdbcType=CHAR},
+      </if>
+      <if test="record.descript != null" >
+        descript = #{record.descript,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descriptEn != null" >
+        descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descriptShort != null" >
+        descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address1 != null" >
+        address1 = #{record.address1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address2 != null" >
+        address2 = #{record.address2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneRsv != null" >
+        phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.website != null" >
+        website = #{record.website,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dns != null" >
+        dns = #{record.dns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.htmlInfo != null" >
+        html_info = #{record.htmlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listOrder != null" >
+        list_order = #{record.listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDatetime != null" >
+        create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyUser != null" >
+        modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyDatetime != null" >
+        modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isSingle != null" >
+        is_single = #{record.isSingle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appType != null" >
+        app_type = #{record.appType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatName != null" >
+        wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmsBrand != null" >
+        pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starLevel != null" >
+        star_level = #{record.starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionTime != null" >
+        version_time = #{record.versionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gc_hotel_group
+    set id = #{record.id,jdbcType=BIGINT},
+      hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      sta = #{record.sta,jdbcType=CHAR},
+      audit = #{record.audit,jdbcType=CHAR},
+      descript = #{record.descript,jdbcType=VARCHAR},
+      descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      address1 = #{record.address1,jdbcType=VARCHAR},
+      address2 = #{record.address2,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      dns = #{record.dns,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      html_info = #{record.htmlInfo,jdbcType=VARCHAR},
+      list_order = #{record.listOrder,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      is_single = #{record.isSingle,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=VARCHAR},
+      wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      star_level = #{record.starLevel,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      version_time = #{record.versionTime,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=LONGVARCHAR},
+      logo = #{record.logo,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gc_hotel_group
+    set id = #{record.id,jdbcType=BIGINT},
+      hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      sta = #{record.sta,jdbcType=CHAR},
+      audit = #{record.audit,jdbcType=CHAR},
+      descript = #{record.descript,jdbcType=VARCHAR},
+      descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      address1 = #{record.address1,jdbcType=VARCHAR},
+      address2 = #{record.address2,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      dns = #{record.dns,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      html_info = #{record.htmlInfo,jdbcType=VARCHAR},
+      list_order = #{record.listOrder,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      is_single = #{record.isSingle,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=VARCHAR},
+      wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      star_level = #{record.starLevel,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      version_time = #{record.versionTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.GcHotelGroupWithBLOBs" >
+    update gc_hotel_group
+    <set >
+      <if test="hotelGroupId != null" >
+        hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        sta = #{sta,jdbcType=CHAR},
+      </if>
+      <if test="audit != null" >
+        audit = #{audit,jdbcType=CHAR},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptEn != null" >
+        descript_en = #{descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptShort != null" >
+        descript_short = #{descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address1 != null" >
+        address1 = #{address1,jdbcType=VARCHAR},
+      </if>
+      <if test="address2 != null" >
+        address2 = #{address2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneRsv != null" >
+        phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dns != null" >
+        dns = #{dns,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlInfo != null" >
+        html_info = #{htmlInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null" >
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDatetime != null" >
+        modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSingle != null" >
+        is_single = #{isSingle,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        wechat_name = #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="pmsBrand != null" >
+        pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null" >
+        star_level = #{starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="versionTime != null" >
+        version_time = #{versionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="entity.GcHotelGroupWithBLOBs" >
+    update gc_hotel_group
+    set hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      sta = #{sta,jdbcType=CHAR},
+      audit = #{audit,jdbcType=CHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      descript_en = #{descriptEn,jdbcType=VARCHAR},
+      descript_short = #{descriptShort,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address1 = #{address1,jdbcType=VARCHAR},
+      address2 = #{address2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      dns = #{dns,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      html_info = #{htmlInfo,jdbcType=VARCHAR},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      is_single = #{isSingle,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      wechat_name = #{wechatName,jdbcType=VARCHAR},
+      pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      star_level = #{starLevel,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      version_time = #{versionTime,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      logo = #{logo,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.GcHotelGroup" >
+    update gc_hotel_group
+    set hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      sta = #{sta,jdbcType=CHAR},
+      audit = #{audit,jdbcType=CHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      descript_en = #{descriptEn,jdbcType=VARCHAR},
+      descript_short = #{descriptShort,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address1 = #{address1,jdbcType=VARCHAR},
+      address2 = #{address2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      dns = #{dns,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      html_info = #{htmlInfo,jdbcType=VARCHAR},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      is_single = #{isSingle,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      wechat_name = #{wechatName,jdbcType=VARCHAR},
+      pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      star_level = #{starLevel,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      version_time = #{versionTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectCodeAndDes" parameterType="entity.GcHotelGroupExample" resultMap="BaseResultMap">
+    select code,descript from gc_hotel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

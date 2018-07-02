@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.GcHotelMapper" >
+  <resultMap id="BaseResultMap" type="entity.GcHotel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hotel_group_code" property="hotelGroupCode" jdbcType="VARCHAR" />
+    <result column="hotel_group_id" property="hotelGroupId" jdbcType="BIGINT" />
+    <result column="hotel_id" property="hotelId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="sta" property="sta" jdbcType="CHAR" />
+    <result column="audit" property="audit" jdbcType="CHAR" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
+    <result column="descript_en" property="descriptEn" jdbcType="VARCHAR" />
+    <result column="descript_short" property="descriptShort" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address1" property="address1" jdbcType="VARCHAR" />
+    <result column="address2" property="address2" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="phone_rsv" property="phoneRsv" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="dns" property="dns" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="list_order" property="listOrder" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_datetime" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="modify_datetime" property="modifyDatetime" jdbcType="TIMESTAMP" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="town_code" property="townCode" jdbcType="VARCHAR" />
+    <result column="shopping_district_code" property="shoppingDistrictCode" jdbcType="VARCHAR" />
+    <result column="scenic_spot_code" property="scenicSpotCode" jdbcType="VARCHAR" />
+    <result column="book_list_order" property="bookListOrder" jdbcType="VARCHAR" />
+    <result column="start_level_code" property="startLevelCode" jdbcType="VARCHAR" />
+    <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="compre_score" property="compreScore" jdbcType="VARCHAR" />
+    <result column="category_code" property="categoryCode" jdbcType="VARCHAR" />
+    <result column="manage_type" property="manageType" jdbcType="VARCHAR" />
+    <result column="pair_pic" property="pairPic" jdbcType="VARCHAR" />
+    <result column="app_type" property="appType" jdbcType="VARCHAR" />
+    <result column="online_check" property="onlineCheck" jdbcType="CHAR" />
+    <result column="client_type" property="clientType" jdbcType="VARCHAR" />
+    <result column="area1" property="area1" jdbcType="VARCHAR" />
+    <result column="area2" property="area2" jdbcType="VARCHAR" />
+    <result column="zone_code" property="zoneCode" jdbcType="VARCHAR" />
+    <result column="customer_manager" property="customerManager" jdbcType="VARCHAR" />
+    <result column="wechat_name" property="wechatName" jdbcType="VARCHAR" />
+    <result column="pms_brand" property="pmsBrand" jdbcType="VARCHAR" />
+    <result column="resrv_sync" property="resrvSync" jdbcType="CHAR" />
+    <result column="resrv_sync_type" property="resrvSyncType" jdbcType="VARCHAR" />
+    <result column="star_level" property="starLevel" jdbcType="VARCHAR" />
+    <result column="min_price" property="minPrice" jdbcType="DECIMAL" />
+    <result column="hotel_longitude" property="hotelLongitude" jdbcType="DECIMAL" />
+    <result column="hotel_latitude" property="hotelLatitude" jdbcType="DECIMAL" />
+    <result column="open_date" property="openDate" jdbcType="TIMESTAMP" />
+    <result column="renovation_date" property="renovationDate" jdbcType="TIMESTAMP" />
+    <result column="land_mark" property="landMark" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="INTEGER" />
+    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="promotion_tag" property="promotionTag" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="entity.GcHotelWithBLOBs" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="logo" property="logo" jdbcType="LONGVARBINARY" />
+    <result column="html_info" property="htmlInfo" jdbcType="LONGVARCHAR" />
+    <result column="map_html" property="mapHtml" jdbcType="LONGVARCHAR" />
+    <result column="hotel_policy" property="hotelPolicy" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, hotel_group_code, hotel_group_id, hotel_id, code, sta, audit, descript, descript_en, 
+    descript_short, country, city, address1, address2, phone, fax, phone_rsv, website, 
+    email, dns, photo, list_order, create_user, create_datetime, modify_user, modify_datetime, 
+    province_code, city_code, district_code, town_code, shopping_district_code, scenic_spot_code, 
+    book_list_order, start_level_code, brand_code, score, compre_score, category_code, 
+    manage_type, pair_pic, app_type, online_check, client_type, area1, area2, zone_code, 
+    customer_manager, wechat_name, pms_brand, resrv_sync, resrv_sync_type, star_level, 
+    min_price, hotel_longitude, hotel_latitude, open_date, renovation_date, land_mark, 
+    room_num, floor, promotion_tag
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark, logo, html_info, map_html, hotel_policy
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="entity.GcHotelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gc_hotel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.GcHotelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gc_hotel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gc_hotel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gc_hotel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.GcHotelExample" >
+    delete from gc_hotel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.GcHotelWithBLOBs" >
+    insert into gc_hotel (id, hotel_group_code, hotel_group_id, 
+      hotel_id, code, sta, audit, 
+      descript, descript_en, descript_short, 
+      country, city, address1, 
+      address2, phone, fax, 
+      phone_rsv, website, email, 
+      dns, photo, list_order, 
+      create_user, create_datetime, modify_user, 
+      modify_datetime, province_code, city_code, 
+      district_code, town_code, shopping_district_code, 
+      scenic_spot_code, book_list_order, start_level_code, 
+      brand_code, score, compre_score, 
+      category_code, manage_type, pair_pic, 
+      app_type, online_check, client_type, 
+      area1, area2, zone_code, 
+      customer_manager, wechat_name, pms_brand, 
+      resrv_sync, resrv_sync_type, star_level, 
+      min_price, hotel_longitude, hotel_latitude, 
+      open_date, renovation_date, land_mark, 
+      room_num, floor, promotion_tag, 
+      remark, logo, html_info, 
+      map_html, hotel_policy)
+    values (#{id,jdbcType=BIGINT}, #{hotelGroupCode,jdbcType=VARCHAR}, #{hotelGroupId,jdbcType=BIGINT}, 
+      #{hotelId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{sta,jdbcType=CHAR}, #{audit,jdbcType=CHAR}, 
+      #{descript,jdbcType=VARCHAR}, #{descriptEn,jdbcType=VARCHAR}, #{descriptShort,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{address1,jdbcType=VARCHAR}, 
+      #{address2,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{phoneRsv,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{dns,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{listOrder,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyDatetime,jdbcType=TIMESTAMP}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{townCode,jdbcType=VARCHAR}, #{shoppingDistrictCode,jdbcType=VARCHAR}, 
+      #{scenicSpotCode,jdbcType=VARCHAR}, #{bookListOrder,jdbcType=VARCHAR}, #{startLevelCode,jdbcType=VARCHAR}, 
+      #{brandCode,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, #{compreScore,jdbcType=VARCHAR}, 
+      #{categoryCode,jdbcType=VARCHAR}, #{manageType,jdbcType=VARCHAR}, #{pairPic,jdbcType=VARCHAR}, 
+      #{appType,jdbcType=VARCHAR}, #{onlineCheck,jdbcType=CHAR}, #{clientType,jdbcType=VARCHAR}, 
+      #{area1,jdbcType=VARCHAR}, #{area2,jdbcType=VARCHAR}, #{zoneCode,jdbcType=VARCHAR}, 
+      #{customerManager,jdbcType=VARCHAR}, #{wechatName,jdbcType=VARCHAR}, #{pmsBrand,jdbcType=VARCHAR}, 
+      #{resrvSync,jdbcType=CHAR}, #{resrvSyncType,jdbcType=VARCHAR}, #{starLevel,jdbcType=VARCHAR}, 
+      #{minPrice,jdbcType=DECIMAL}, #{hotelLongitude,jdbcType=DECIMAL}, #{hotelLatitude,jdbcType=DECIMAL}, 
+      #{openDate,jdbcType=TIMESTAMP}, #{renovationDate,jdbcType=TIMESTAMP}, #{landMark,jdbcType=VARCHAR}, 
+      #{roomNum,jdbcType=INTEGER}, #{floor,jdbcType=VARCHAR}, #{promotionTag,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{logo,jdbcType=LONGVARBINARY}, #{htmlInfo,jdbcType=LONGVARCHAR}, 
+      #{mapHtml,jdbcType=LONGVARCHAR}, #{hotelPolicy,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.GcHotelWithBLOBs" >
+    insert into gc_hotel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hotelGroupCode != null" >
+        hotel_group_code,
+      </if>
+      <if test="hotelGroupId != null" >
+        hotel_group_id,
+      </if>
+      <if test="hotelId != null" >
+        hotel_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="sta != null" >
+        sta,
+      </if>
+      <if test="audit != null" >
+        audit,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+      <if test="descriptEn != null" >
+        descript_en,
+      </if>
+      <if test="descriptShort != null" >
+        descript_short,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address1 != null" >
+        address1,
+      </if>
+      <if test="address2 != null" >
+        address2,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="phoneRsv != null" >
+        phone_rsv,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="dns != null" >
+        dns,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="listOrder != null" >
+        list_order,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime,
+      </if>
+      <if test="modifyUser != null" >
+        modify_user,
+      </if>
+      <if test="modifyDatetime != null" >
+        modify_datetime,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="townCode != null" >
+        town_code,
+      </if>
+      <if test="shoppingDistrictCode != null" >
+        shopping_district_code,
+      </if>
+      <if test="scenicSpotCode != null" >
+        scenic_spot_code,
+      </if>
+      <if test="bookListOrder != null" >
+        book_list_order,
+      </if>
+      <if test="startLevelCode != null" >
+        start_level_code,
+      </if>
+      <if test="brandCode != null" >
+        brand_code,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="compreScore != null" >
+        compre_score,
+      </if>
+      <if test="categoryCode != null" >
+        category_code,
+      </if>
+      <if test="manageType != null" >
+        manage_type,
+      </if>
+      <if test="pairPic != null" >
+        pair_pic,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="onlineCheck != null" >
+        online_check,
+      </if>
+      <if test="clientType != null" >
+        client_type,
+      </if>
+      <if test="area1 != null" >
+        area1,
+      </if>
+      <if test="area2 != null" >
+        area2,
+      </if>
+      <if test="zoneCode != null" >
+        zone_code,
+      </if>
+      <if test="customerManager != null" >
+        customer_manager,
+      </if>
+      <if test="wechatName != null" >
+        wechat_name,
+      </if>
+      <if test="pmsBrand != null" >
+        pms_brand,
+      </if>
+      <if test="resrvSync != null" >
+        resrv_sync,
+      </if>
+      <if test="resrvSyncType != null" >
+        resrv_sync_type,
+      </if>
+      <if test="starLevel != null" >
+        star_level,
+      </if>
+      <if test="minPrice != null" >
+        min_price,
+      </if>
+      <if test="hotelLongitude != null" >
+        hotel_longitude,
+      </if>
+      <if test="hotelLatitude != null" >
+        hotel_latitude,
+      </if>
+      <if test="openDate != null" >
+        open_date,
+      </if>
+      <if test="renovationDate != null" >
+        renovation_date,
+      </if>
+      <if test="landMark != null" >
+        land_mark,
+      </if>
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="promotionTag != null" >
+        promotion_tag,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="htmlInfo != null" >
+        html_info,
+      </if>
+      <if test="mapHtml != null" >
+        map_html,
+      </if>
+      <if test="hotelPolicy != null" >
+        hotel_policy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hotelGroupCode != null" >
+        #{hotelGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelGroupId != null" >
+        #{hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="hotelId != null" >
+        #{hotelId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        #{sta,jdbcType=CHAR},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=CHAR},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptEn != null" >
+        #{descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptShort != null" >
+        #{descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address1 != null" >
+        #{address1,jdbcType=VARCHAR},
+      </if>
+      <if test="address2 != null" >
+        #{address2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneRsv != null" >
+        #{phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dns != null" >
+        #{dns,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null" >
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDatetime != null" >
+        #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingDistrictCode != null" >
+        #{shoppingDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotCode != null" >
+        #{scenicSpotCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bookListOrder != null" >
+        #{bookListOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="startLevelCode != null" >
+        #{startLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCode != null" >
+        #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="compreScore != null" >
+        #{compreScore,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null" >
+        #{manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="pairPic != null" >
+        #{pairPic,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineCheck != null" >
+        #{onlineCheck,jdbcType=CHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null" >
+        #{area1,jdbcType=VARCHAR},
+      </if>
+      <if test="area2 != null" >
+        #{area2,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCode != null" >
+        #{zoneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="pmsBrand != null" >
+        #{pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="resrvSync != null" >
+        #{resrvSync,jdbcType=CHAR},
+      </if>
+      <if test="resrvSyncType != null" >
+        #{resrvSyncType,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null" >
+        #{starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null" >
+        #{minPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelLongitude != null" >
+        #{hotelLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelLatitude != null" >
+        #{hotelLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="openDate != null" >
+        #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renovationDate != null" >
+        #{renovationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landMark != null" >
+        #{landMark,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionTag != null" >
+        #{promotionTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="htmlInfo != null" >
+        #{htmlInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mapHtml != null" >
+        #{mapHtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotelPolicy != null" >
+        #{hotelPolicy,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.GcHotelExample" resultType="java.lang.Integer" >
+    select count(*) from gc_hotel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gc_hotel
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.hotelGroupCode != null" >
+        hotel_group_code = #{record.hotelGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotelGroupId != null" >
+        hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="record.hotelId != null" >
+        hotel_id = #{record.hotelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sta != null" >
+        sta = #{record.sta,jdbcType=CHAR},
+      </if>
+      <if test="record.audit != null" >
+        audit = #{record.audit,jdbcType=CHAR},
+      </if>
+      <if test="record.descript != null" >
+        descript = #{record.descript,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descriptEn != null" >
+        descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descriptShort != null" >
+        descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address1 != null" >
+        address1 = #{record.address1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address2 != null" >
+        address2 = #{record.address2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneRsv != null" >
+        phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.website != null" >
+        website = #{record.website,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dns != null" >
+        dns = #{record.dns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listOrder != null" >
+        list_order = #{record.listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDatetime != null" >
+        create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyUser != null" >
+        modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyDatetime != null" >
+        modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.provinceCode != null" >
+        province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.townCode != null" >
+        town_code = #{record.townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoppingDistrictCode != null" >
+        shopping_district_code = #{record.shoppingDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scenicSpotCode != null" >
+        scenic_spot_code = #{record.scenicSpotCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookListOrder != null" >
+        book_list_order = #{record.bookListOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startLevelCode != null" >
+        start_level_code = #{record.startLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandCode != null" >
+        brand_code = #{record.brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compreScore != null" >
+        compre_score = #{record.compreScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryCode != null" >
+        category_code = #{record.categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageType != null" >
+        manage_type = #{record.manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pairPic != null" >
+        pair_pic = #{record.pairPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appType != null" >
+        app_type = #{record.appType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineCheck != null" >
+        online_check = #{record.onlineCheck,jdbcType=CHAR},
+      </if>
+      <if test="record.clientType != null" >
+        client_type = #{record.clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area1 != null" >
+        area1 = #{record.area1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area2 != null" >
+        area2 = #{record.area2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zoneCode != null" >
+        zone_code = #{record.zoneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerManager != null" >
+        customer_manager = #{record.customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatName != null" >
+        wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmsBrand != null" >
+        pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resrvSync != null" >
+        resrv_sync = #{record.resrvSync,jdbcType=CHAR},
+      </if>
+      <if test="record.resrvSyncType != null" >
+        resrv_sync_type = #{record.resrvSyncType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starLevel != null" >
+        star_level = #{record.starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minPrice != null" >
+        min_price = #{record.minPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hotelLongitude != null" >
+        hotel_longitude = #{record.hotelLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hotelLatitude != null" >
+        hotel_latitude = #{record.hotelLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.openDate != null" >
+        open_date = #{record.openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.renovationDate != null" >
+        renovation_date = #{record.renovationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.landMark != null" >
+        land_mark = #{record.landMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomNum != null" >
+        room_num = #{record.roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.floor != null" >
+        floor = #{record.floor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promotionTag != null" >
+        promotion_tag = #{record.promotionTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.htmlInfo != null" >
+        html_info = #{record.htmlInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.mapHtml != null" >
+        map_html = #{record.mapHtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.hotelPolicy != null" >
+        hotel_policy = #{record.hotelPolicy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gc_hotel
+    set id = #{record.id,jdbcType=BIGINT},
+      hotel_group_code = #{record.hotelGroupCode,jdbcType=VARCHAR},
+      hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      hotel_id = #{record.hotelId,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      sta = #{record.sta,jdbcType=CHAR},
+      audit = #{record.audit,jdbcType=CHAR},
+      descript = #{record.descript,jdbcType=VARCHAR},
+      descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      address1 = #{record.address1,jdbcType=VARCHAR},
+      address2 = #{record.address2,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      dns = #{record.dns,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      list_order = #{record.listOrder,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      town_code = #{record.townCode,jdbcType=VARCHAR},
+      shopping_district_code = #{record.shoppingDistrictCode,jdbcType=VARCHAR},
+      scenic_spot_code = #{record.scenicSpotCode,jdbcType=VARCHAR},
+      book_list_order = #{record.bookListOrder,jdbcType=VARCHAR},
+      start_level_code = #{record.startLevelCode,jdbcType=VARCHAR},
+      brand_code = #{record.brandCode,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
+      compre_score = #{record.compreScore,jdbcType=VARCHAR},
+      category_code = #{record.categoryCode,jdbcType=VARCHAR},
+      manage_type = #{record.manageType,jdbcType=VARCHAR},
+      pair_pic = #{record.pairPic,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=VARCHAR},
+      online_check = #{record.onlineCheck,jdbcType=CHAR},
+      client_type = #{record.clientType,jdbcType=VARCHAR},
+      area1 = #{record.area1,jdbcType=VARCHAR},
+      area2 = #{record.area2,jdbcType=VARCHAR},
+      zone_code = #{record.zoneCode,jdbcType=VARCHAR},
+      customer_manager = #{record.customerManager,jdbcType=VARCHAR},
+      wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      resrv_sync = #{record.resrvSync,jdbcType=CHAR},
+      resrv_sync_type = #{record.resrvSyncType,jdbcType=VARCHAR},
+      star_level = #{record.starLevel,jdbcType=VARCHAR},
+      min_price = #{record.minPrice,jdbcType=DECIMAL},
+      hotel_longitude = #{record.hotelLongitude,jdbcType=DECIMAL},
+      hotel_latitude = #{record.hotelLatitude,jdbcType=DECIMAL},
+      open_date = #{record.openDate,jdbcType=TIMESTAMP},
+      renovation_date = #{record.renovationDate,jdbcType=TIMESTAMP},
+      land_mark = #{record.landMark,jdbcType=VARCHAR},
+      room_num = #{record.roomNum,jdbcType=INTEGER},
+      floor = #{record.floor,jdbcType=VARCHAR},
+      promotion_tag = #{record.promotionTag,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=LONGVARCHAR},
+      logo = #{record.logo,jdbcType=LONGVARBINARY},
+      html_info = #{record.htmlInfo,jdbcType=LONGVARCHAR},
+      map_html = #{record.mapHtml,jdbcType=LONGVARCHAR},
+      hotel_policy = #{record.hotelPolicy,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gc_hotel
+    set id = #{record.id,jdbcType=BIGINT},
+      hotel_group_code = #{record.hotelGroupCode,jdbcType=VARCHAR},
+      hotel_group_id = #{record.hotelGroupId,jdbcType=BIGINT},
+      hotel_id = #{record.hotelId,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      sta = #{record.sta,jdbcType=CHAR},
+      audit = #{record.audit,jdbcType=CHAR},
+      descript = #{record.descript,jdbcType=VARCHAR},
+      descript_en = #{record.descriptEn,jdbcType=VARCHAR},
+      descript_short = #{record.descriptShort,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      address1 = #{record.address1,jdbcType=VARCHAR},
+      address2 = #{record.address2,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      phone_rsv = #{record.phoneRsv,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      dns = #{record.dns,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      list_order = #{record.listOrder,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_datetime = #{record.createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{record.modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{record.modifyDatetime,jdbcType=TIMESTAMP},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      town_code = #{record.townCode,jdbcType=VARCHAR},
+      shopping_district_code = #{record.shoppingDistrictCode,jdbcType=VARCHAR},
+      scenic_spot_code = #{record.scenicSpotCode,jdbcType=VARCHAR},
+      book_list_order = #{record.bookListOrder,jdbcType=VARCHAR},
+      start_level_code = #{record.startLevelCode,jdbcType=VARCHAR},
+      brand_code = #{record.brandCode,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
+      compre_score = #{record.compreScore,jdbcType=VARCHAR},
+      category_code = #{record.categoryCode,jdbcType=VARCHAR},
+      manage_type = #{record.manageType,jdbcType=VARCHAR},
+      pair_pic = #{record.pairPic,jdbcType=VARCHAR},
+      app_type = #{record.appType,jdbcType=VARCHAR},
+      online_check = #{record.onlineCheck,jdbcType=CHAR},
+      client_type = #{record.clientType,jdbcType=VARCHAR},
+      area1 = #{record.area1,jdbcType=VARCHAR},
+      area2 = #{record.area2,jdbcType=VARCHAR},
+      zone_code = #{record.zoneCode,jdbcType=VARCHAR},
+      customer_manager = #{record.customerManager,jdbcType=VARCHAR},
+      wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      pms_brand = #{record.pmsBrand,jdbcType=VARCHAR},
+      resrv_sync = #{record.resrvSync,jdbcType=CHAR},
+      resrv_sync_type = #{record.resrvSyncType,jdbcType=VARCHAR},
+      star_level = #{record.starLevel,jdbcType=VARCHAR},
+      min_price = #{record.minPrice,jdbcType=DECIMAL},
+      hotel_longitude = #{record.hotelLongitude,jdbcType=DECIMAL},
+      hotel_latitude = #{record.hotelLatitude,jdbcType=DECIMAL},
+      open_date = #{record.openDate,jdbcType=TIMESTAMP},
+      renovation_date = #{record.renovationDate,jdbcType=TIMESTAMP},
+      land_mark = #{record.landMark,jdbcType=VARCHAR},
+      room_num = #{record.roomNum,jdbcType=INTEGER},
+      floor = #{record.floor,jdbcType=VARCHAR},
+      promotion_tag = #{record.promotionTag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.GcHotelWithBLOBs" >
+    update gc_hotel
+    <set >
+      <if test="hotelGroupCode != null" >
+        hotel_group_code = #{hotelGroupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelGroupId != null" >
+        hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="hotelId != null" >
+        hotel_id = #{hotelId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sta != null" >
+        sta = #{sta,jdbcType=CHAR},
+      </if>
+      <if test="audit != null" >
+        audit = #{audit,jdbcType=CHAR},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptEn != null" >
+        descript_en = #{descriptEn,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptShort != null" >
+        descript_short = #{descriptShort,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address1 != null" >
+        address1 = #{address1,jdbcType=VARCHAR},
+      </if>
+      <if test="address2 != null" >
+        address2 = #{address2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneRsv != null" >
+        phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dns != null" >
+        dns = #{dns,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="listOrder != null" >
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null" >
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDatetime != null" >
+        modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        town_code = #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingDistrictCode != null" >
+        shopping_district_code = #{shoppingDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotCode != null" >
+        scenic_spot_code = #{scenicSpotCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bookListOrder != null" >
+        book_list_order = #{bookListOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="startLevelCode != null" >
+        start_level_code = #{startLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCode != null" >
+        brand_code = #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="compreScore != null" >
+        compre_score = #{compreScore,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        category_code = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageType != null" >
+        manage_type = #{manageType,jdbcType=VARCHAR},
+      </if>
+      <if test="pairPic != null" >
+        pair_pic = #{pairPic,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineCheck != null" >
+        online_check = #{onlineCheck,jdbcType=CHAR},
+      </if>
+      <if test="clientType != null" >
+        client_type = #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null" >
+        area1 = #{area1,jdbcType=VARCHAR},
+      </if>
+      <if test="area2 != null" >
+        area2 = #{area2,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCode != null" >
+        zone_code = #{zoneCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        customer_manager = #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        wechat_name = #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="pmsBrand != null" >
+        pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="resrvSync != null" >
+        resrv_sync = #{resrvSync,jdbcType=CHAR},
+      </if>
+      <if test="resrvSyncType != null" >
+        resrv_sync_type = #{resrvSyncType,jdbcType=VARCHAR},
+      </if>
+      <if test="starLevel != null" >
+        star_level = #{starLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null" >
+        min_price = #{minPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelLongitude != null" >
+        hotel_longitude = #{hotelLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelLatitude != null" >
+        hotel_latitude = #{hotelLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="openDate != null" >
+        open_date = #{openDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renovationDate != null" >
+        renovation_date = #{renovationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="landMark != null" >
+        land_mark = #{landMark,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        room_num = #{roomNum,jdbcType=INTEGER},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionTag != null" >
+        promotion_tag = #{promotionTag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="htmlInfo != null" >
+        html_info = #{htmlInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mapHtml != null" >
+        map_html = #{mapHtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotelPolicy != null" >
+        hotel_policy = #{hotelPolicy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="entity.GcHotelWithBLOBs" >
+    update gc_hotel
+    set hotel_group_code = #{hotelGroupCode,jdbcType=VARCHAR},
+      hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      hotel_id = #{hotelId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      sta = #{sta,jdbcType=CHAR},
+      audit = #{audit,jdbcType=CHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      descript_en = #{descriptEn,jdbcType=VARCHAR},
+      descript_short = #{descriptShort,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address1 = #{address1,jdbcType=VARCHAR},
+      address2 = #{address2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      dns = #{dns,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      town_code = #{townCode,jdbcType=VARCHAR},
+      shopping_district_code = #{shoppingDistrictCode,jdbcType=VARCHAR},
+      scenic_spot_code = #{scenicSpotCode,jdbcType=VARCHAR},
+      book_list_order = #{bookListOrder,jdbcType=VARCHAR},
+      start_level_code = #{startLevelCode,jdbcType=VARCHAR},
+      brand_code = #{brandCode,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      compre_score = #{compreScore,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      manage_type = #{manageType,jdbcType=VARCHAR},
+      pair_pic = #{pairPic,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      online_check = #{onlineCheck,jdbcType=CHAR},
+      client_type = #{clientType,jdbcType=VARCHAR},
+      area1 = #{area1,jdbcType=VARCHAR},
+      area2 = #{area2,jdbcType=VARCHAR},
+      zone_code = #{zoneCode,jdbcType=VARCHAR},
+      customer_manager = #{customerManager,jdbcType=VARCHAR},
+      wechat_name = #{wechatName,jdbcType=VARCHAR},
+      pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      resrv_sync = #{resrvSync,jdbcType=CHAR},
+      resrv_sync_type = #{resrvSyncType,jdbcType=VARCHAR},
+      star_level = #{starLevel,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=DECIMAL},
+      hotel_longitude = #{hotelLongitude,jdbcType=DECIMAL},
+      hotel_latitude = #{hotelLatitude,jdbcType=DECIMAL},
+      open_date = #{openDate,jdbcType=TIMESTAMP},
+      renovation_date = #{renovationDate,jdbcType=TIMESTAMP},
+      land_mark = #{landMark,jdbcType=VARCHAR},
+      room_num = #{roomNum,jdbcType=INTEGER},
+      floor = #{floor,jdbcType=VARCHAR},
+      promotion_tag = #{promotionTag,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      logo = #{logo,jdbcType=LONGVARBINARY},
+      html_info = #{htmlInfo,jdbcType=LONGVARCHAR},
+      map_html = #{mapHtml,jdbcType=LONGVARCHAR},
+      hotel_policy = #{hotelPolicy,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.GcHotel" >
+    update gc_hotel
+    set hotel_group_code = #{hotelGroupCode,jdbcType=VARCHAR},
+      hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
+      hotel_id = #{hotelId,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      sta = #{sta,jdbcType=CHAR},
+      audit = #{audit,jdbcType=CHAR},
+      descript = #{descript,jdbcType=VARCHAR},
+      descript_en = #{descriptEn,jdbcType=VARCHAR},
+      descript_short = #{descriptShort,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address1 = #{address1,jdbcType=VARCHAR},
+      address2 = #{address2,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      phone_rsv = #{phoneRsv,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      dns = #{dns,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      list_order = #{listOrder,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_datetime = #{modifyDatetime,jdbcType=TIMESTAMP},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      town_code = #{townCode,jdbcType=VARCHAR},
+      shopping_district_code = #{shoppingDistrictCode,jdbcType=VARCHAR},
+      scenic_spot_code = #{scenicSpotCode,jdbcType=VARCHAR},
+      book_list_order = #{bookListOrder,jdbcType=VARCHAR},
+      start_level_code = #{startLevelCode,jdbcType=VARCHAR},
+      brand_code = #{brandCode,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      compre_score = #{compreScore,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      manage_type = #{manageType,jdbcType=VARCHAR},
+      pair_pic = #{pairPic,jdbcType=VARCHAR},
+      app_type = #{appType,jdbcType=VARCHAR},
+      online_check = #{onlineCheck,jdbcType=CHAR},
+      client_type = #{clientType,jdbcType=VARCHAR},
+      area1 = #{area1,jdbcType=VARCHAR},
+      area2 = #{area2,jdbcType=VARCHAR},
+      zone_code = #{zoneCode,jdbcType=VARCHAR},
+      customer_manager = #{customerManager,jdbcType=VARCHAR},
+      wechat_name = #{wechatName,jdbcType=VARCHAR},
+      pms_brand = #{pmsBrand,jdbcType=VARCHAR},
+      resrv_sync = #{resrvSync,jdbcType=CHAR},
+      resrv_sync_type = #{resrvSyncType,jdbcType=VARCHAR},
+      star_level = #{starLevel,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=DECIMAL},
+      hotel_longitude = #{hotelLongitude,jdbcType=DECIMAL},
+      hotel_latitude = #{hotelLatitude,jdbcType=DECIMAL},
+      open_date = #{openDate,jdbcType=TIMESTAMP},
+      renovation_date = #{renovationDate,jdbcType=TIMESTAMP},
+      land_mark = #{landMark,jdbcType=VARCHAR},
+      room_num = #{roomNum,jdbcType=INTEGER},
+      floor = #{floor,jdbcType=VARCHAR},
+      promotion_tag = #{promotionTag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectCodeAndDes" parameterType="string" resultMap="BaseResultMap">
+    select hotel_group_code,code,descript from gc_hotel
+    where hotel_group_code=#{hotelGroupCode,jdbcType=VARCHAR}
+  </select>
+</mapper>
