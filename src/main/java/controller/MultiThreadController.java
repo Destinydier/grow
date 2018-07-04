@@ -21,5 +21,6 @@ public class MultiThreadController {
     public String getHotelBySingleThread()
     {
 
+        return "";
     }
 }
