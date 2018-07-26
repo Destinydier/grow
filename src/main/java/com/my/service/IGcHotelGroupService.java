@@ -1,6 +1,6 @@
-package service;
+package com.my.service;
 
-import entity.GcHotelGroup;
+import com.my.entity.GcHotelGroup;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package entity;
+package com.my.entity;
 
 public class GcHotelWithBLOBs extends GcHotel {
     private String remark;

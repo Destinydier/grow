@@ -1,8 +1,10 @@
-package service;
+package com.my.service.impl;
 
-import dao.GcHotelMapper;
-import entity.GcHotel;
+import com.my.dao.GcHotelMapper;
+import com.my.entity.GcHotel;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import com.my.service.IGcHotelService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,8 +13,9 @@ import java.util.List;
  * @author jyt
  * @date 2018/6/25 下午2:35
  */
-@Service("gcHotelService")
-public class GcHotelService implements IGcHotelService{
+@Service
+@ComponentScan
+public class GcHotelServiceImpl implements IGcHotelService {
 
     @Resource
     private GcHotelMapper gcHotelMapper;

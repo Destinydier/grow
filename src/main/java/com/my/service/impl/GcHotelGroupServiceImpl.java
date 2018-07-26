@@ -1,9 +1,11 @@
-package service;
+package com.my.service.impl;
 
-import dao.GcHotelGroupMapper;
-import entity.GcHotelGroup;
-import entity.GcHotelGroupExample;
+import com.my.dao.GcHotelGroupMapper;
+import com.my.entity.GcHotelGroup;
+import com.my.entity.GcHotelGroupExample;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import com.my.service.IGcHotelGroupService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * @date 2018/6/25 下午2:02
  */
 @Service
-public class GcHotelGroupService implements IGcHotelGroupService {
+public class GcHotelGroupServiceImpl implements IGcHotelGroupService {
 
     @Resource
     private GcHotelGroupMapper gcHotelGroupMapper;

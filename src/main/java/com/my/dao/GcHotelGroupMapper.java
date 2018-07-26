@@ -1,8 +1,8 @@
-package dao;
+package com.my.dao;
 
-import entity.GcHotelGroup;
-import entity.GcHotelGroupExample;
-import entity.GcHotelGroupWithBLOBs;
+import com.my.entity.GcHotelGroup;
+import com.my.entity.GcHotelGroupExample;
+import com.my.entity.GcHotelGroupWithBLOBs;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

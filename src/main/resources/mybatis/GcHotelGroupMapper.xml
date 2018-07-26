@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.GcHotelGroupMapper" >
-  <resultMap id="BaseResultMap" type="entity.GcHotelGroup" >
+<mapper namespace="com.my.dao.GcHotelGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.my.entity.GcHotelGroup" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="hotel_group_id" property="hotelGroupId" jdbcType="BIGINT" />
     <result column="code" property="code" jdbcType="VARCHAR" />
@@ -37,7 +37,7 @@
     <result column="version" property="version" jdbcType="VARCHAR" />
     <result column="version_time" property="versionTime" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="entity.GcHotelGroupWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.my.entity.GcHotelGroupWithBLOBs" extends="BaseResultMap" >
     <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
     <result column="logo" property="logo" jdbcType="LONGVARBINARY" />
   </resultMap>
@@ -109,7 +109,7 @@
   <sql id="Blob_Column_List" >
     remark, logo
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="entity.GcHotelGroupExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.my.entity.GcHotelGroupExample" >
     select
     <if test="distinct" >
       distinct
@@ -125,7 +125,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.GcHotelGroupExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.my.entity.GcHotelGroupExample" >
     select
     <if test="distinct" >
       distinct
@@ -151,13 +151,13 @@
     delete from gc_hotel_group
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="entity.GcHotelGroupExample" >
+  <delete id="deleteByExample" parameterType="com.my.entity.GcHotelGroupExample" >
     delete from gc_hotel_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="entity.GcHotelGroupWithBLOBs" >
+  <insert id="insert" parameterType="com.my.entity.GcHotelGroupWithBLOBs" >
     insert into gc_hotel_group (id, hotel_group_id, code, 
       sta, audit, descript, descript_en, 
       descript_short, country, city, 
@@ -183,7 +183,7 @@
       #{starLevel,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{versionTime,jdbcType=VARCHAR}, 
       #{remark,jdbcType=LONGVARCHAR}, #{logo,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="entity.GcHotelGroupWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.my.entity.GcHotelGroupWithBLOBs" >
     insert into gc_hotel_group
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -406,7 +406,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="entity.GcHotelGroupExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.my.entity.GcHotelGroupExample" resultType="java.lang.Integer" >
     select count(*) from gc_hotel_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -610,7 +610,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="entity.GcHotelGroupWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.my.entity.GcHotelGroupWithBLOBs" >
     update gc_hotel_group
     <set >
       <if test="hotelGroupId != null" >
@@ -721,7 +721,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="entity.GcHotelGroupWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.my.entity.GcHotelGroupWithBLOBs" >
     update gc_hotel_group
     set hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
       code = #{code,jdbcType=VARCHAR},
@@ -760,7 +760,7 @@
       logo = #{logo,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="entity.GcHotelGroup" >
+  <update id="updateByPrimaryKey" parameterType="com.my.entity.GcHotelGroup" >
     update gc_hotel_group
     set hotel_group_id = #{hotelGroupId,jdbcType=BIGINT},
       code = #{code,jdbcType=VARCHAR},
@@ -798,7 +798,7 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <select id="selectCodeAndDes" parameterType="entity.GcHotelGroupExample" resultMap="BaseResultMap">
+  <select id="selectCodeAndDes" parameterType="com.my.entity.GcHotelGroupExample" resultMap="BaseResultMap">
     select code,descript from gc_hotel_group
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
